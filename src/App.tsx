@@ -1,25 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import { useEffect } from 'react';
+import { Advertsment } from './components/Advertsment';
+import { Footer } from './components/Footer';
+import { Header } from './components/Header';
+import { ImageList } from './components/ImageList';
+import { SearchBar } from './components/SearchBar';
+import { SearchProvider } from './contexts/SearchContext';
+import { GlobalStyle } from './styles/global';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className="App" >
+      <SearchProvider>
+        <Header />
+
+        <SearchBar />
+
+        <ImageList />
+      </SearchProvider>
+
+      <Footer />
+
+      <GlobalStyle />
+    </div >
   );
 }
 
