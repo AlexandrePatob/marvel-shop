@@ -1,6 +1,3 @@
-
-import { useEffect } from 'react';
-import { Advertsment } from './components/Advertsment';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import { ImageList } from './components/ImageList';
@@ -9,9 +6,8 @@ import { SearchProvider } from './contexts/SearchContext';
 import { GlobalStyle } from './styles/global';
 
 function App() {
-
   return (
-    <div className="App" >
+    <div className="App">
       <SearchProvider>
         <Header />
 
@@ -21,9 +17,8 @@ function App() {
       </SearchProvider>
 
       <Footer />
-
       <GlobalStyle />
-    </div >
+    </div>
   );
 }
 
