@@ -1,22 +1,12 @@
-import { api, Response, Thumbnail, Creators } from './api';
+import { api } from './api';
 
-export interface MarvelInfo {
-  id: number;
-  title: string;
-  thumbnail: Thumbnail;
-  creators: {
-    items: Creators[];
-  };
-}
 interface readChoicesProps {
   limit: number;
 }
 
 export const readCharacters = async ({ limit = 12 }: readChoicesProps) => {
   try {
-    const response = await api.get(
-      `characters?orderBy=-modified&limit=${limit}`
-    );
+    const response = await api.get(`characters?orderBy=-modified&limit=${limit}`);
 
     return response.data;
   } catch (e) {
@@ -46,19 +36,27 @@ export const readCreators = async ({ limit = 12 }: readChoicesProps) => {
 
 interface readAllComicsProps {
   limit: number;
-  offSet: number;
-  // series: Number[];
-  // characters: Number[];
-  // creators: Number[];
+  offset: number;
+  series?: number[];
+  characters?: number[];
+  creators?: number[];
 }
 
 export const readAllComics = async ({
   limit = 12,
-  offSet = 0,
+  offset = 0,
+  series,
+  characters,
+  creators
 }: readAllComicsProps) => {
   try {
+    let query = '';
+    query = series ? `&series=${series}` : query;
+    query = characters ? `&characters=${characters}` : query;
+    query = creators ? `&creators=${creators}` : query;
+
     const response = await api.get(
-      `comics?orderBy=-modified&limit=${limit}&offSet=${offSet}`
+      `comics?orderBy=-modified&limit=${limit}&offset=${offset}${query}`
     );
 
     return response.data;
