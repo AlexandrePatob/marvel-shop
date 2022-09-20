@@ -19,6 +19,10 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    @import url('../assets/Roboto_Condensed/RobotoCondensed-Bold.ttf');
+    @import url('../assets/Roboto_Condensed/RobotoCondensed-Regular.ttf');
+    @import url('../assets/Roboto/Roboto-Bold.ttf');
+
   }
 
   html{
