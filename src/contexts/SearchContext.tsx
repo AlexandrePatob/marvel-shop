@@ -1,24 +1,43 @@
-import { createContext, ReactNode, useState } from "react";
-import { readSeries, readAllComics, readCharacters, MarvelInfo, readCreators } from "../services/marvel";
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { createContext, ReactNode, useState } from 'react';
+import { readSeries, readAllComics, readCharacters, readCreators } from '../services/marvel';
+import { Response } from '../shared/interfaces/Api';
+import { MarvelInfo } from '../shared/interfaces/Marvel';
 
 interface SearchContextData {
-  searchResult: MarvelInfo[];
+  searchResult: Response | undefined;
   choices: MarvelInfo[];
-  searchByCharacters: () => Promise<MarvelInfo[]>,
-  searchBySeries: () => Promise<MarvelInfo[]>,
-  searchByCreators: () => Promise<MarvelInfo[]>,
-  searchByComics: () => Promise<MarvelInfo[]>,
+  filter: number[];
+  filterType: string;
+  setFilterType: (value: string) => void;
+  setFilter: (props: number[]) => void;
+  searchByCharacters: () => Promise<MarvelInfo[]>;
+  searchBySeries: () => Promise<MarvelInfo[]>;
+  searchByCreators: () => Promise<MarvelInfo[]>;
+  searchByComics: (props: searchByComicsProps) => Promise<Response>;
 }
 
 interface SearchProviderProps {
   children: ReactNode;
 }
 
+interface searchByComicsProps {
+  limit: number;
+  offset: number;
+  series?: number[];
+  characters?: number[];
+  creators?: number[];
+  loadMore?: boolean;
+}
+
 export const SearchContext = createContext({} as SearchContextData);
 
 export function SearchProvider({ children }: SearchProviderProps) {
-  const [searchResult, setSearchResult] = useState<MarvelInfo[]>([]);
+  const [searchResult, setSearchResult] = useState<Response>();
   const [choices, setChoices] = useState<MarvelInfo[]>([]);
+  const [filter, setFilter] = useState<number[]>([]);
+  const [filterType, setFilterType] = useState<string>('');
 
   async function searchBySeries(limit = 24) {
     const result = await readSeries({
@@ -31,49 +50,74 @@ export function SearchProvider({ children }: SearchProviderProps) {
 
   async function searchByCharacters(limit = 24) {
     const result = await readCharacters({
-      limit,
+      limit
     });
 
-    setChoices(result.data?.results.map((character: any) => {
-      return {
-        ...character,
-        title: character.name,
-      }
-    }));
+    setChoices(
+      result.data?.results.map((character: any) => {
+        return {
+          ...character,
+          title: character.name
+        };
+      })
+    );
 
     return result.data?.results as MarvelInfo[];
   }
 
   async function searchByCreators(limit = 24) {
     const result = await readCreators({
-      limit,
+      limit
     });
 
-    setChoices(result.data?.results.map((character: any) => {
-      return {
-        ...character,
-        title: character.fullName,
-      }
-    }))
+    setChoices(
+      result.data?.results.map((character: any) => {
+        return {
+          ...character,
+          title: character.fullName
+        };
+      })
+    );
 
     return result.data?.results as MarvelInfo[];
   }
 
-  async function searchByComics() {
+  async function searchByComics({
+    limit = 12,
+    offset = 1,
+    series,
+    characters,
+    creators,
+    loadMore = false
+  }: searchByComicsProps) {
     const result = await readAllComics({
-      limit: 64,
-      offSet: 0
+      limit,
+      offset,
+      series,
+      characters,
+      creators
     });
 
-    setSearchResult(result.data?.results)
+    if (loadMore) {
+      setSearchResult({
+        ...result.data,
+        results: [...searchResult?.results!, ...result.data.results]
+      });
+    } else {
+      setSearchResult(result.data);
+    }
 
-    return result.data?.results as MarvelInfo[];
+    return result.data as Response;
   }
 
   return (
     <SearchContext.Provider
       value={{
         choices,
+        filter,
+        setFilter,
+        filterType,
+        setFilterType,
         searchResult,
         searchBySeries,
         searchByCharacters,

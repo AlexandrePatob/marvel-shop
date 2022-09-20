@@ -1,4 +1,4 @@
-import { Container } from "./styles";
+import { Container } from './styles';
 
 interface AdvertsmentProps {
   backgroundColor: string;
@@ -6,10 +6,8 @@ interface AdvertsmentProps {
 
 export function Advertsment({ backgroundColor }: AdvertsmentProps) {
   return (
-    <Container style={{ backgroundColor: backgroundColor }}>
-      <div>
-        Advertsment
-      </div>
+    <Container style={{ backgroundColor }}>
+      <div>Advertsment</div>
     </Container>
   );
 }

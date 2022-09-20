@@ -1,39 +1,129 @@
-import { Container } from "./styles";
+import { useContext, useEffect, useState } from 'react';
 import { GoTriangleDown } from 'react-icons/go';
-import { useContext, useEffect } from "react";
-import { SearchContext } from "../../contexts/SearchContext";
+
+import { SearchContext } from '../../contexts/SearchContext';
+
+import Popover from '@mui/material/Popover';
+import { Checkbox } from '@mui/material';
+
+import {
+  Container,
+  ContainerSearchBar,
+  ItemSearchBar,
+  PopoverContainer,
+  PopoverItems
+} from './styles';
 
 export function SearchBar() {
-  const { choices, searchBySeries, searchByCharacters, searchByCreators } = useContext(SearchContext);
+  const {
+    choices,
+    filter,
+    filterType,
+    setFilterType,
+    setFilter,
+    searchBySeries,
+    searchByCharacters,
+    searchByCreators,
+    searchByComics
+  } = useContext(SearchContext);
+
+  const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (choices.length > 0) {
-      choices.map((result) => {
-        console.log(result.title.split('(')[0])
-        console.log(result.id)
-      });
-    }
+    setFilter([]);
   }, [choices]);
+
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+
+    searchByComics({
+      limit: 12,
+      offset: 0,
+      [`${filterType}`]: filter
+    });
+  };
+
+  const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (!filter.includes(Number(event.target.value))) {
+      setFilter([...filter, Number(event.target.value)]);
+    } else {
+      const newArray = filter.filter((item) => item !== Number(event.target.value));
+      setFilter(newArray);
+    }
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
 
   return (
     <Container>
-      <div className='search-tabs'>
-        <div>
+      <ContainerSearchBar>
+        <ItemSearchBar>
           <strong>BROWSE BY</strong>
-        </div>
-        <div onClick={() => searchBySeries()}>
+        </ItemSearchBar>
+        <ItemSearchBar
+          onClick={(event) => {
+            searchBySeries();
+            handleClick(event);
+            setFilterType('series');
+          }}
+        >
           <p>SERIES</p>
           <GoTriangleDown />
-        </div>
-        <div onClick={() => searchByCharacters()}>
+        </ItemSearchBar>
+        <ItemSearchBar
+          onClick={(event) => {
+            searchByCharacters();
+            handleClick(event);
+            setFilterType('characters');
+          }}
+        >
           <p>CHARACTERS</p>
           <GoTriangleDown />
-        </div>
-        <div onClick={() => searchByCreators()}>
+        </ItemSearchBar>
+        <ItemSearchBar
+          onClick={(event) => {
+            searchByCreators();
+            handleClick(event);
+            setFilterType('creators');
+          }}
+        >
           <p>CREATORS</p>
           <GoTriangleDown />
-        </div>
-      </div>
+        </ItemSearchBar>
+
+        <Popover
+          id={id}
+          open={open}
+          anchorEl={anchorEl}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left'
+          }}
+        >
+          <PopoverContainer>
+            {choices.length > 0 &&
+              choices.map((choice) => {
+                return (
+                  <PopoverItems key={choice.id}>
+                    <Checkbox
+                      value={choice.id}
+                      checked={filter.includes(choice.id)}
+                      onChange={handleCheck}
+                      inputProps={{ 'aria-label': 'controlled' }}
+                    />
+                    {choice.title.split('(')[0]}
+                  </PopoverItems>
+                );
+              })}
+          </PopoverContainer>
+        </Popover>
+      </ContainerSearchBar>
     </Container>
   );
 }

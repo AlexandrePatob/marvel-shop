@@ -14,10 +14,6 @@ export const Container = styled.div`
     max-height: 100vh;
   }
 
-  .navigation-wrapper {
-    position: relative;
-  }
-
   .arrow {
     width: 30px;
     height: 30px;
@@ -41,88 +37,53 @@ export const Container = styled.div`
   .arrow--disabled {
     fill: rgba(255, 255, 255, 0.5);
   }
+`;
 
-  .container-title-banner {
-    display: flex;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    margin-top: 0px;
-    justify-content: center;
-    border: 4px solid white;
-    position: relative;
-    margin-top: -6rem;
-    background-color: white;
-  }
+export const ContainerTitleBanner = styled.div`
+  display: flex;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 0px;
+  justify-content: center;
+  border: 4px solid white;
+  position: relative;
+  margin-top: -6rem;
+  background-color: white;
+  border-radius: 1rem;
+`;
 
-  .box-title-banner {
+export const BoxBannerTitle = styled.div`
+  display: flex;
+  margin: 1rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  text-align: center;
+
+  span {
+    font: 400 16px/1.3 Roboto Bold, Trebuchet MS, Helvetica, Arial, sans-serif;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
     display: flex;
-    margin: 1rem;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 0.4rem;
-    text-align: center;
+    font-size: 30px;
+    padding: 0px;
+  }
+  p {
+    text-transform: uppercase;
+    font-size: 14px;
+    font: 400 16px/1.3 Roboto, Trebuchet MS, Helvetica, Arial, sans-serif;
+  }
 
-    span {
-      text-transform: uppercase;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 30px;
-      padding: 0px;
-    }
-    p {
-      text-transform: uppercase;
-      font-size: 14px;
-    }
-
-    button {
-      position: relative;
-      margin-top: 1rem;
-    }
-
-    .content-grid__load-more {
-      text-align: center;
-      -webkit-box-pack: center;
-      -ms-flex-pack: center;
-      justify-content: center;
-      margin-left: auto;
-      margin-right: auto;
-
-      button {
-        background-color: transparent;
-        border-radius: 0;
-        border: none;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        cursor: pointer;
-        display: inline-block;
-        font-weight: 700;
-        margin: 15px auto;
-        overflow: hidden;
-        padding: 0;
-        position: relative;
-        letter-spacing: 0;
-        width: auto;
-        z-index: 10;
-
-        div {
-          background-color: transparent;
-          border-left: 1px solid #151515;
-          border-right: 1px solid #151515;
-          color: #151515;
-          opacity: 1;
-          -webkit-transition: none;
-          transition: none;
-          text-align: center;
-          line-height: 16px;
-          color: #151515;
-          text-align: center;
-          line-height: 16px;
-          box-sizing: border-box;
-        }
-      }
-    }
+  button {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    background-color: red;
+    width: 205px;
+    height: 40px;
+    border-radius: 13px;
   }
 `;

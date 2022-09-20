@@ -1,10 +1,11 @@
-import { Container } from './styles'
 import { BiDotsVerticalRounded } from 'react-icons/bi';
+
+import { Container, HeaderTabs } from './styles';
 
 export function HeaderBody() {
   return (
     <Container>
-      <div className='header-tabs'>
+      <HeaderTabs>
         <div>
           <header>
             <p>SHOP</p>
@@ -65,23 +66,7 @@ export function HeaderBody() {
             <p>Sales</p>
           </header>
         </div>
-      </div>
-
-      {/* <ul>
-          <li>
-            <label>SHOP</label>
-          </li>
-          <li>
-            <a id="mvl-flyout-button-0" className="" href="https://www.marvel.com/watch">New!</a>
-          </li>
-          <li>
-            <a id="mvl-flyout-button-0" className="" href="https://www.marvel.com/watch">Comics</a>
-          </li>
-          <li>
-            <a id="mvl-flyout-button-0" className="" href="https://www.marvel.com/watch">Comics</a>
-          </li>
-        </ul> */}
-      {/* </div> */}
+      </HeaderTabs>
     </Container>
   );
 }

@@ -2,16 +2,21 @@ import styled from 'styled-components';
 
 export const Header = styled.header`
   background-color: #ffffff;
+`;
 
-  .welcome-account {
-    margin: 0 auto;
-    display: flex;
-    justify-content: flex-end;
-    max-width: 1200px;
-    padding-top: 25px;
-    margin-bottom: -5rem;
-    gap: 1rem;
-    align-items: center;
+export const WelcomeAccount = styled.div`
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  max-width: 1200px;
+  padding-top: 25px;
+  margin-bottom: -5rem;
+  gap: 1rem;
+  align-items: center;
+
+  h5 {
+    font: 400 16px/1 RobotoCondensed Bold, Trebuchet MS, Helvetica, Arial, sans-serif;
+    letter-spacing: 1px;
   }
 `;
 
@@ -29,74 +34,67 @@ export const IconContainer = styled.header`
     display: flex;
     justify-content: space-between;
   }
+`;
 
-  .header-right {
-    display: flex;
-    justify-content: space-between;
-    width: 15rem;
-    margin: 1rem;
-    align-items: flex-start;
-    color: #151515;
-  }
+export const Search = styled.div`
+  border: 0;
+  border-bottom: 1px solid #151515;
+  position: relative;
+  width: 20rem;
+  height: 28px;
 
-  .bi-dots {
-    margin: 4px auto;
-  }
-
-  .icons-container {
-    display: flex;
-    gap: 1rem;
-    justify-content: space-around;
-    align-items: center;
-  }
-
-  .social-icons {
-    color: #151515;
-    display: flex;
-    margin-bottom: -3rem;
-  }
-
-  .marvel-logo {
-    display: flex;
-    height: 14.5rem;
-    width: 14.5rem;
-  }
-
-  .search-container {
-    display: flex;
-    align-items: center;
-    margin-top: 3rem;
-    gap: 2rem;
-  }
-
-  .search {
+  input {
+    background-color: #ffffff;
     border: 0;
-    border-bottom: 1px solid #151515;
-    position: relative;
-    width: 17rem;
-    height: 28p;
+    width: 100%;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font: 800 18px/1 RobotoCondensed Regular, Trebuchet MS, Helvetica, Arial, sans-serif;
+  }
 
-    input {
-      font-size: 17px;
-      background-color: #ffffff;
-      border: 0;
-      width: 100%;
-    }
+  button {
+    position: absolute;
+    top: -6px;
+    right: 4px;
+    z-index: 10;
+    border: none;
+    background: transparent;
+    outline: none;
 
-    button {
-      position: absolute;
-      top: -6px;
-      right: 4px;
-      z-index: 10;
-      border: none;
-      background: transparent;
-      outline: none;
-
-      svg {
-        color: #000000;
-        height: 32px;
-        width: 32px;
-      }
+    svg {
+      color: #202020;
+      height: 32px;
+      width: 32px;
     }
   }
+`;
+
+export const SearchContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 3rem;
+  gap: 2rem;
+`;
+
+export const MarvelLogoComponent = styled.img`
+  display: flex;
+  height: 14.5rem;
+  width: 14.5rem;
+`;
+
+export const SocialIcon = styled.img`
+  color: #151515;
+  display: flex;
+  margin-bottom: -3rem;
+`;
+
+export const IconsContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+  justify-content: space-around;
+  align-items: center;
+`;
+
+export const Dots = styled.div`
+  margin: 4px auto;
 `;
