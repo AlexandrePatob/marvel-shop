@@ -71,7 +71,9 @@ export const BoxBannerTitle = styled.div`
     align-items: center;
     font-size: 30px;
     padding: 0px;
+    font-weight: bold;
   }
+
   p {
     text-transform: uppercase;
     font-size: 14px;
@@ -86,4 +88,9 @@ export const BoxBannerTitle = styled.div`
     height: 40px;
     border-radius: 13px;
   }
+`;
+
+export const BannerImagesContainer = styled.div`
+  position: relative;
+  marginbottom: 2rem;
 `;

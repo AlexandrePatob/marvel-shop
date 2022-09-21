@@ -11,7 +11,8 @@ import {
   ContainerSearchBar,
   ItemSearchBar,
   PopoverContainer,
-  PopoverItems
+  PopoverItems,
+  PopoverButton
 } from './styles';
 
 export function SearchBar() {
@@ -38,6 +39,10 @@ export function SearchBar() {
   };
 
   const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleFilter = () => {
     setAnchorEl(null);
 
     searchByComics({
@@ -67,7 +72,9 @@ export function SearchBar() {
         </ItemSearchBar>
         <ItemSearchBar
           onClick={(event) => {
-            searchBySeries();
+            if (filterType !== 'series') {
+              searchBySeries();
+            }
             handleClick(event);
             setFilterType('series');
           }}
@@ -77,7 +84,9 @@ export function SearchBar() {
         </ItemSearchBar>
         <ItemSearchBar
           onClick={(event) => {
-            searchByCharacters();
+            if (filterType !== 'characters') {
+              searchByCharacters();
+            }
             handleClick(event);
             setFilterType('characters');
           }}
@@ -87,7 +96,9 @@ export function SearchBar() {
         </ItemSearchBar>
         <ItemSearchBar
           onClick={(event) => {
-            searchByCreators();
+            if (filterType !== 'creators') {
+              searchByCreators();
+            }
             handleClick(event);
             setFilterType('creators');
           }}
@@ -99,8 +110,8 @@ export function SearchBar() {
         <Popover
           id={id}
           open={open}
-          anchorEl={anchorEl}
           onClose={handleClose}
+          anchorEl={anchorEl}
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'left'
@@ -121,6 +132,10 @@ export function SearchBar() {
                   </PopoverItems>
                 );
               })}
+            <div></div>
+            <PopoverButton>
+              <button onClick={handleFilter}>OK</button>
+            </PopoverButton>
           </PopoverContainer>
         </Popover>
       </ContainerSearchBar>

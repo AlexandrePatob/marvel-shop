@@ -10,7 +10,7 @@ import 'keen-slider/keen-slider.min.css';
 import { SearchContext } from '../../contexts/SearchContext';
 import { MarvelInfo } from '../../shared/interfaces/Marvel';
 
-import { BoxBannerTitle, Container, ContainerTitleBanner } from './styles';
+import { BoxBannerTitle, Container, ContainerTitleBanner, BannerImagesContainer } from './styles';
 
 export function Header() {
   const { searchByComics } = useContext(SearchContext);
@@ -71,7 +71,7 @@ export function Header() {
       <HeaderBody />
 
       {cards.length > 0 && (
-        <div style={{ position: 'relative', marginBottom: '2rem' }}>
+        <BannerImagesContainer>
           <div ref={sliderRef} className="keen-slider">
             {cards.map((card) => {
               return (
@@ -98,6 +98,7 @@ export function Header() {
               />
             </>
           )}
+
           <ContainerTitleBanner>
             <BoxBannerTitle>
               <span>{cards[currentSlide]?.title}</span>
@@ -108,7 +109,7 @@ export function Header() {
               </button>
             </BoxBannerTitle>
           </ContainerTitleBanner>
-        </div>
+        </BannerImagesContainer>
       )}
     </Container>
   );

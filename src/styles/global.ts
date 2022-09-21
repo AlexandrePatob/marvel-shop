@@ -1,19 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-  :root {
-    --background: #F0F2F5;
-    --red: #E52E4D;
-    --blue: #5429CC;
-    --green: #33CC95;
-
-    --blue-light: #6933FF;
-
-    --text-title: #363F5F;
-    --text-body: #969CB3;
-
-    --shape: #FFFFFF;
-  }
 
   * {
     margin: 0;
@@ -59,6 +46,6 @@ export const GlobalStyle = createGlobalStyle`
   svg {
     height: 28px;
     width: 28px;
-    color: #999;
+    color: #999999;
   }
 `;

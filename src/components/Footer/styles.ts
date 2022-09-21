@@ -30,14 +30,12 @@ export const FooterContainer = styled.div`
         text-transform: uppercase;
         font-family: "Roboto Bold","Trebuchet MS",Helvetica,Arial,sans-serif;
         font-size: 16px;
-        letter-spacing: 1px;
       }
 
       span {
         align-items: left;
         font-family: "Roboto","Trebuchet MS",Helvetica,Arial,sans-serif;
         font-size: 13px;
-        letter-spacing: 1px;
       }
     }
 `;

@@ -65,3 +65,19 @@ export const PopoverItems = styled.div`
     }
   }
 `;
+
+export const PopoverButton = styled.div`
+  margin-left: -70px;
+  margin-top: 2rem;
+  background: red;
+  width: 70px;
+  height: 22px;
+  border-radius: 4px;
+
+  button {
+    width: 100%;
+    height: 100%;
+    color: #ffffff;
+    font: 400 18px Roboto Bold, Trebuchet MS, Helvetica, Arial, sans-serif;
+  }
+`;
