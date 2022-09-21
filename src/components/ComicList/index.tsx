@@ -2,14 +2,14 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useContext, useEffect, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
-import MarvelLoading from '../../assets/giphy.gif';
+import MarvelLoading from '../../assets/marvel-loading.gif';
 
 import { SearchContext } from '../../contexts/SearchContext';
 import { ComicsFilterProps } from '../../shared/interfaces/ComicList';
 
 import { Container, FilterComics, ListComics, Loading, LoadMore } from './styles';
 
-export function ImageList() {
+export function ComicList() {
   const { filter, filterType, searchResult, searchByComics, choices, setFilter, setFilterType } =
     useContext(SearchContext);
   const [fitlerName, setFilterName] = useState<(ComicsFilterProps | null)[]>([]);
@@ -79,8 +79,10 @@ export function ImageList() {
   }
 
   useEffect(() => {
-    getTitlesFromFilter();
-    setLoading(false);
+    if (searchResult) {
+      getTitlesFromFilter();
+      setLoading(false);
+    }
   }, [searchResult]);
 
   return (
@@ -118,7 +120,7 @@ export function ImageList() {
           })}
       </ListComics>
 
-      {searchResult?.total! > searchResult?.count! && (
+      {searchResult?.count! >= searchResult?.limit! && (
         <LoadMore onClick={() => handleLoadMore()}>
           <button>LoadMore</button>
           <div className="load-more-border"></div>

@@ -17,6 +17,7 @@ export const ListComics = styled.div`
   grid-gap: 70px;
   width: 1200px;
   margin-bottom: 2rem;
+  margin-top: 1rem;
   text-align: center;
 
   div {
@@ -58,21 +59,24 @@ export const FilterComics = styled.div`
   display: flex;
   flex-direction: row;
   gap: 1rem;
+  flex-wrap: wrap;
 
   div {
     display: flex;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     font-weight: bold;
+
     span {
       cursor: pointer;
       border: 1px solid black;
       padding: 10px;
-      padding-right: 32px;
+      padding-right: 10px;
       text-align: center;
       justify-content: center;
       display: flex;
       align-items: center;
+      gap: 18px;
     }
   }
 `;

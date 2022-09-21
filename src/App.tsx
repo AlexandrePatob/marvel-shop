@@ -1,6 +1,6 @@
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
-import { ImageList } from './components/ImageList';
+import { ComicList } from './components/ComicList';
 import { SearchBar } from './components/SearchBar';
 import { SearchProvider } from './contexts/SearchContext';
 import { GlobalStyle } from './styles/global';
@@ -13,7 +13,7 @@ function App() {
 
         <SearchBar />
 
-        <ImageList />
+        <ComicList />
       </SearchProvider>
 
       <Footer />
