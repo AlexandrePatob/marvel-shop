@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useContext, useEffect, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import MarvelLoading from '../../assets/marvel-loading.gif';
